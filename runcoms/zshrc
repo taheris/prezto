@@ -11,3 +11,69 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+for config_file ($HOME/.yadr/zsh/*.zsh) source $config_file
+
+
+# set shell path
+path=(
+  /usr/local/opt/{openssl,sqlite,gettext,llvm}/bin
+  $path
+  ~/.cargo/bin
+)
+
+# set terminal options
+setopt NO_NOMATCH
+bindkey "\eh" backward-kill-word
+
+# zsh completions
+fpath=(
+  /usr/local/share/zsh-completions
+  /usr/local/share/zsh/site-functions
+  ~/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions
+  $fpath
+)
+
+# source interactive shell scripts
+source ~/.iterm2_shell_integration.zsh
+source ~/.opam/opam-init/init.zsh &>/dev/null || true
+
+# set up fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*" 2>/dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# set up zaw
+source ~/src/github.com/zsh-users/zaw/zaw.zsh
+bindkey '^R' zaw-history
+bindkey -M filterselect '^J' down-line-or-history
+bindkey -M filterselect '^K' up-line-or-history
+bindkey -M filterselect '^E' accept-search
+zstyle ':filter-select:highlight' matched fg=green
+zstyle ':filter-select' max-lines 8
+zstyle ':filter-select' case-insensitive yes
+zstyle ':filter-select' extended-search yes
+
+#
+# shell functions
+#
+
+github-clone() {
+  local repo=$*
+  local outdir="/Users/${USER}/src/github.com/${repo}"
+  regex="^([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$"
+  [[ ${repo} =~ ${regex} ]] || { echo "${repo} not in valid format"; return 1; }
+  command git clone "git@github.com:${repo}.git" ${outdir} || return 1
+  cd ${outdir}
+}
+
+rg-boundary() {
+  command rg --sort-files --follow --max-columns 180 "\\b$*\\b"
+}
+
+rg-limit() {
+  command rg --sort-files --follow --max-columns 180 -oe ".{0,50}$*.{0,50}"
+}
+
+calc() {
+  bc -l <<< "$@"
+}
