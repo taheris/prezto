@@ -13,10 +13,9 @@ fi
 # source non-interactive shell scripts
 source ~/.nix-profile/etc/profile.d/nix.sh
 
-# misc env vars
+# misc
 export LC_ALL=en_US.UTF-8
 export MANPATH=$MANPATH:/usr/local/opt/gnu-tar/libexec/gnuman
-export GTAGSLABEL=ctags
 export GOPATH=~
 
 # openssl
@@ -24,11 +23,15 @@ export OPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include
 export OPENSSL_LIB_DIR=/usr/local/opt/openssl/lib
 
 # rust
-export RUST_SRC_PATH=~/src/github.com/rust-lang/rust/src
 export CARGO_HOME=~/.cargo
 export RLS_ROOT=~/src/github.com/rust-lang-nursery/rls
+export RUST_SRC_PATH=~/src/github.com/rust-lang/rust/src
 export DYLD_LIBRARY_PATH=~/.rustup/toolchains/nightly-x86_64-apple-darwin/lib
 
 # jvm
 export JAVA_HOME=/Library/Java/Home
 export SBT_OPTS="-XX:MaxHeapSize=8G"
+
+# gtags
+export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+export GTAGSLABEL=pygments
