@@ -11,7 +11,7 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
 fi
 
 # source non-interactive shell scripts
-source ~/.nix-profile/etc/profile.d/nix.sh
+[ -f ~/.nix-profile/etc/profile.d/nix.sh ] && source ~/.nix-profile/etc/profile.d/nix.sh
 
 # misc
 export LC_ALL=en_US.UTF-8
@@ -19,13 +19,12 @@ export MANPATH=$MANPATH:/usr/local/opt/gnu-tar/libexec/gnuman
 export GOPATH=~
 
 # openssl
-export OPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include
-export OPENSSL_LIB_DIR=/usr/local/opt/openssl/lib
+export OPENSSL_INCLUDE_DIR=/usr/local/opt/openssl@1.1/include
+export OPENSSL_LIB_DIR=/usr/local/opt/openssl@1.1/lib
 
 # rust
 export CARGO_HOME=~/.cargo
-export RLS_ROOT=~/src/github.com/rust-lang-nursery/rls
-export RUST_SRC_PATH=~/src/github.com/rust-lang/rust/src
+export RUST_SRC_PATH=~/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src
 export DYLD_LIBRARY_PATH=~/.rustup/toolchains/nightly-x86_64-apple-darwin/lib
 
 # jvm
