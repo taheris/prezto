@@ -31,13 +31,8 @@ fpath=(
   /usr/local/share/zsh-completions
   /usr/local/share/zsh/site-functions
   ~/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions
-  ~/src/github.com/spwhitt/nix-zsh-completions
   $fpath
 )
-
-# source interactive shell scripts
-[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
-[ -f ~/.opam/opam-init/init.zsh ] && source ~/.opam/opam-init/init.zsh &>/dev/null
 
 # set up fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
