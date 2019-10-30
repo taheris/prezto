@@ -21,8 +21,7 @@ export OPENSSL_LIB_DIR=/usr/local/opt/openssl@1.1/lib
 
 # rust
 export CARGO_HOME=~/.cargo
-export RUST_SRC_PATH=~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
-export DYLD_LIBRARY_PATH=~/.rustup/toolchains/nightly-x86_64-apple-darwin/lib
+export RUSTC_WRAPPER=sccache
 
 # jvm
 export JAVA_HOME=/Library/Java/Home
