@@ -19,7 +19,8 @@ path=(
   /usr/local/sbin
   /usr/local/opt/{openssl@1.1,sqlite,gettext,llvm}/bin
   $path
-  ~/{.cargo,.cabal}/bin
+  ~/{.cargo,.cabal,.krew}/bin
+  /usr/local/Cellar/emacs-plus@28/28.0.50/bin
 )
 
 # set terminal options
@@ -33,6 +34,8 @@ fpath=(
   ~/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions
   $fpath
 )
+
+source <(kubectl completion zsh)
 
 # set up fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
